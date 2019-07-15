@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace指定哪个接口-->
+<mapper namespace="com.example.demo.mapper.UnitPriceMapper">
+    
+    <select id="find" resultType="UnitPrice">
+        select * from bbh_unitprice
+    </select>
+
+    <update id="up" parameterType="UnitPrice" >
+        UPDATE bbh_unitprice set waterUnit = #{waterUnit} , electricUnit = ${electricUnit}
+    </update>
+
+
+</mapper>

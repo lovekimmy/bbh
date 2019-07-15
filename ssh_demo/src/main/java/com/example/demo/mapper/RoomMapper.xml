@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.RoomMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Room">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="room" property="room" jdbcType="INTEGER"/>
+        <result column="number" property="number" jdbcType="INTEGER"/>
+        <result column="size" property="size" jdbcType="INTEGER"/>
+        <result column="face" property="face" jdbcType="VARCHAR"/>
+        <result column="square" property="square" jdbcType="DOUBLE"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+   id , room, number, size , face, square
+  </sql>
+
+    <select id="listRoom" resultType="Room">
+        select
+        <include refid="Base_Column_List"/>
+        from bbh_room_room
+    </select>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from bbh_room_room
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+    <select id="roomIdById" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select roomId from bbh_room_room where id = #{id}
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bbh_room_room
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+
+    <insert id="insert" parameterType="com.example.demo.entity.Room">
+    insert into bbh_room_room (id, number, size, 
+      waterMoney, electricMoney, face, 
+      price, square, startDay, 
+      endDay)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}, 
+      #{watermoney,jdbcType=DOUBLE}, #{electricmoney,jdbcType=DOUBLE}, #{face,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DOUBLE}, #{square,jdbcType=DOUBLE}, #{startday,jdbcType=DATE}, 
+      #{endday,jdbcType=DATE})
+  </insert>
+    <insert id="insertSelective" parameterType="com.example.demo.entity.Room">
+        insert into bbh_room_room
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+            <if test="size != null">
+                size,
+            </if>
+            <if test="watermoney != null">
+                waterMoney,
+            </if>
+            <if test="electricmoney != null">
+                electricMoney,
+            </if>
+            <if test="face != null">
+                face,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="square != null">
+                square,
+            </if>
+            <if test="startday != null">
+                startDay,
+            </if>
+            <if test="endday != null">
+                endDay,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=INTEGER},
+            </if>
+            <if test="size != null">
+                #{size,jdbcType=INTEGER},
+            </if>
+            <if test="watermoney != null">
+                #{watermoney,jdbcType=DOUBLE},
+            </if>
+            <if test="electricmoney != null">
+                #{electricmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="face != null">
+                #{face,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DOUBLE},
+            </if>
+            <if test="square != null">
+                #{square,jdbcType=DOUBLE},
+            </if>
+            <if test="startday != null">
+                #{startday,jdbcType=DATE},
+            </if>
+            <if test="endday != null">
+                #{endday,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Room">
+        update bbh_room_room
+        <set>
+            <if test="number != null">
+                number = #{number,jdbcType=INTEGER},
+            </if>
+            <if test="size != null">
+                size = #{size,jdbcType=INTEGER},
+            </if>
+            <if test="watermoney != null">
+                waterMoney = #{watermoney,jdbcType=DOUBLE},
+            </if>
+            <if test="electricmoney != null">
+                electricMoney = #{electricmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="face != null">
+                face = #{face,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DOUBLE},
+            </if>
+            <if test="square != null">
+                square = #{square,jdbcType=DOUBLE},
+            </if>
+            <if test="startday != null">
+                startDay = #{startday,jdbcType=DATE},
+            </if>
+            <if test="endday != null">
+                endDay = #{endday,jdbcType=DATE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Room">
+    update bbh_room_room
+    set number = #{number,jdbcType=INTEGER},
+      size = #{size,jdbcType=INTEGER},
+      waterMoney = #{watermoney,jdbcType=DOUBLE},
+      electricMoney = #{electricmoney,jdbcType=DOUBLE},
+      face = #{face,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      square = #{square,jdbcType=DOUBLE},
+      startDay = #{startday,jdbcType=DATE},
+      endDay = #{endday,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

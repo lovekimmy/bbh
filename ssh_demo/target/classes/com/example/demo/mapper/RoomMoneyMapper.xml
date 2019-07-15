@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace指定哪个接口-->
+<mapper namespace="com.example.demo.mapper.RoomMoneyMapper">
+
+    <insert id="addRoomMoney" parameterType="RoomMoney">
+    insert bbh_room_money SET roomId = #{roomId}, waterNum = #{waterNum} ,
+     electricNum = #{electricNum} , readingDay = #{readingDay} , price = #{price}
+</insert>
+
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="RoomMoney">
+     select * from bbh_room_money where roomId = #{roomId}
+    </select>
+
+
+</mapper>
